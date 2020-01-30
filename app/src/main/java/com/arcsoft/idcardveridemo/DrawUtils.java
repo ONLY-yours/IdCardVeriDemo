@@ -6,9 +6,9 @@ import android.graphics.Path;
 import android.graphics.Rect;
 import android.hardware.Camera;
 
-class DrawUtils {
+public class DrawUtils {
 
-    static Rect adjustRect(Rect rect, int previewWidth, int previewHeight, int canvasWidth, int canvasHeight, int cameraOri, int mCameraId) {
+    public static Rect adjustRect(Rect rect, int previewWidth, int previewHeight, int canvasWidth, int canvasHeight, int cameraOri, int mCameraId) {
         if (rect == null) {
             return null;
         }
@@ -86,7 +86,7 @@ class DrawUtils {
         return newRect;
     }
 
-    static void drawFaceRect(Canvas canvas, Rect rect, int color, int faceRectThickness) {
+    public static void drawFaceRect(Canvas canvas, Rect rect, int color, int faceRectThickness) {
         if (canvas == null || rect == null) {
             return;
         }

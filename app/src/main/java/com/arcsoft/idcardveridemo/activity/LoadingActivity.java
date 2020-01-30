@@ -19,6 +19,7 @@ public class LoadingActivity extends BaseActivity implements View.OnClickListene
         setContentView(R.layout.act_loading);
         initView();
     }
+
     void initView(){
         btnWelcome=findViewById(R.id.btnWelcome);
         btnStart=findViewById(R.id.btnStart);

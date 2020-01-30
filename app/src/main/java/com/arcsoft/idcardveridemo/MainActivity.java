@@ -2,11 +2,14 @@ package com.arcsoft.idcardveridemo;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.graphics.PorterDuff;
 import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -26,6 +29,7 @@ import com.arcsoft.idcardveri.DetectFaceResult;
 import com.arcsoft.idcardveri.IdCardVerifyError;
 import com.arcsoft.idcardveri.IdCardVerifyListener;
 import com.arcsoft.idcardveri.IdCardVerifyManager;
+import com.arcsoft.idcardveridemo.ImageChange.ChangeNv21;
 import com.arcsoft.idcardveridemo.constants.Constants;
 
 import java.util.List;
@@ -179,6 +183,13 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
         int width = 0;
         //身份证数据高（高度需为2的倍数）
         int height = 0;
+        Drawable drawable = getResources().getDrawable(R.mipmap.idimg);
+        BitmapDrawable bd = (BitmapDrawable) drawable;
+        final Bitmap bmm = bd.getBitmap();
+        width=bmm.getWidth();
+        height=bmm.getHeight();
+        nv21Data = ChangeNv21.bitmapToNv21(bmm,width,height);
+
         if(isInit) {
             DetectFaceResult result = IdCardVerifyManager.getInstance().inputIdCardData(nv21Data, width, height);
             Log.i(TAG, "inputIdCardData result: " + result.getErrCode());
