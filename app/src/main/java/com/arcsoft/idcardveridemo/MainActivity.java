@@ -38,6 +38,7 @@ import java.util.concurrent.Executors;
 
 public class MainActivity extends AppCompatActivity implements SurfaceHolder.Callback {
 
+
     private static final String TAG = MainActivity.class.getSimpleName();
     private boolean isInit = false;
     //比对阈值，建议为0.82

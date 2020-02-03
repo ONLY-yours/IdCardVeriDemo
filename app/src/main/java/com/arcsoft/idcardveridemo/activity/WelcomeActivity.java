@@ -178,8 +178,8 @@ public class WelcomeActivity extends BaseActivity implements SurfaceHolder.Callb
         Drawable drawable = getResources().getDrawable(R.mipmap.idimg);
         BitmapDrawable bd = (BitmapDrawable) drawable;
         final Bitmap bmm = bd.getBitmap();
-        width=bmm.getWidth();
-        height=bmm.getHeight();
+        width=(bmm.getWidth()-bmm.getWidth()%4);
+        height=(bmm.getHeight()-bmm.getHeight()%2);
         nv21Data = ChangeNv21.bitmapToNv21(bmm,width,height);
 
         if(isInit) {
@@ -212,6 +212,8 @@ public class WelcomeActivity extends BaseActivity implements SurfaceHolder.Callb
                         DetectFaceResult result = IdCardVerifyManager.getInstance().onPreviewData(data, mWidth, mHeight, true);
                         if (result.getErrCode() != IdCardVerifyError.OK) {
                             Log.i(TAG, "onPreviewData video result: " + result.getErrCode());
+                        }else{
+                            //异步处理脸部
                         }
                         if (surfaceRect != null) {
                             Canvas canvas = surfaceRect.getHolder().lockCanvas();
