@@ -35,6 +35,11 @@
             android:layout_height="wrap_content"
             android:text="模拟身份证输入"/>
 
+        <Button
+            android:id="@+id/btn_photoselect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="筛选图片"/>
     </LinearLayout>
 
 </FrameLayout>

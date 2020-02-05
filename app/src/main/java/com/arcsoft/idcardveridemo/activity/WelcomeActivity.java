@@ -1,6 +1,7 @@
 package com.arcsoft.idcardveridemo.activity;
 
 import android.Manifest;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -11,6 +12,8 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.hardware.Camera;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -33,6 +36,7 @@ import com.arcsoft.idcardveridemo.base.BaseActivity;
 import com.arcsoft.idcardveridemo.R;
 import com.arcsoft.idcardveridemo.constants.Constants;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -43,6 +47,7 @@ public class WelcomeActivity extends BaseActivity implements SurfaceHolder.Callb
     private SurfaceView surfaceView;
     private SurfaceView surfaceRect;
     private Button btnUse;
+    private Button btnSelectPhoto;
 
     private int camereId = 0;
     private Camera camera;
@@ -53,6 +58,10 @@ public class WelcomeActivity extends BaseActivity implements SurfaceHolder.Callb
     private boolean isCurrentReady = false;
     //身份证人脸数据是否检测到
     private boolean isIdCardReady = false;
+
+    //打开相册的标记
+    private static final int REQUEST_CODE_SCAN_GALLERY = 1 ;
+    private Bitmap IDimg=null;
 
     private ExecutorService activeService = Executors.newSingleThreadExecutor();
 
@@ -106,6 +115,12 @@ public class WelcomeActivity extends BaseActivity implements SurfaceHolder.Callb
                inputIdCard();
             }
         });
+//        btnSelectPhoto.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                openAlbum();
+//            }
+//        });
     }
 
     //用于激活引擎（初始化）
@@ -163,6 +178,7 @@ public class WelcomeActivity extends BaseActivity implements SurfaceHolder.Callb
         surfaceRect.setZOrderMediaOverlay(true);
         surfaceRect.getHolder().setFormat(PixelFormat.TRANSLUCENT);
         btnUse=findViewById(R.id.btn_idcard);
+        btnSelectPhoto=findViewById(R.id.btn_photoselect);
     }
 
 
@@ -181,6 +197,12 @@ public class WelcomeActivity extends BaseActivity implements SurfaceHolder.Callb
         width=(bmm.getWidth()-bmm.getWidth()%4);
         height=(bmm.getHeight()-bmm.getHeight()%2);
         nv21Data = ChangeNv21.bitmapToNv21(bmm,width,height);
+
+        if(IDimg!=null){
+            width=(IDimg.getWidth()-IDimg.getWidth()%4);
+            height=(IDimg.getHeight()-IDimg.getHeight()%2);
+            nv21Data = ChangeNv21.bitmapToNv21(IDimg,width,height);
+        }
 
         if(isInit) {
             DetectFaceResult result = IdCardVerifyManager.getInstance().inputIdCardData(nv21Data, width, height);
@@ -333,7 +355,34 @@ public class WelcomeActivity extends BaseActivity implements SurfaceHolder.Callb
         return result;
     }
 
+    //打开相册选择
+    private void openAlbum() {
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        startActivityForResult(intent,REQUEST_CODE_SCAN_GALLERY);//打开系统相册
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+
+        if(resultCode==RESULT_OK){
+            switch (requestCode){
+                case REQUEST_CODE_SCAN_GALLERY:
+                    Toast.makeText(this,""+data.getDataString(),Toast.LENGTH_LONG).show();
+                    Bitmap bitmap= null;
+                    try {
+                        bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(),data.getData());
+                        IDimg = MediaStore.Images.Media.getBitmap(this.getContentResolver(),data.getData());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+            }
+        }
+
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 
 
 }

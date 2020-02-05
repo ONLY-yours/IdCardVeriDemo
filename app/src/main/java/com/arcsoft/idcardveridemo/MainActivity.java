@@ -191,11 +191,15 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
         height=bmm.getHeight();
         nv21Data = ChangeNv21.bitmapToNv21(bmm,width,height);
 
+
+
         if(isInit) {
             DetectFaceResult result = IdCardVerifyManager.getInstance().inputIdCardData(nv21Data, width, height);
             Log.i(TAG, "inputIdCardData result: " + result.getErrCode());
         }
     }
+
+
 
     private void inputImage() {
         //图片数据 根据实际数据输入
@@ -204,6 +208,7 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
         int width = 0;
         //图片数据高（高度需为2的倍数）
         int height = 0;
+
 
         if(isInit) {
             DetectFaceResult result = IdCardVerifyManager.getInstance().onPreviewData(nv21Data, width, height, false);
