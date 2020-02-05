@@ -17,6 +17,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity
+            android:name=".activity.LicenseSearchActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".activity.VehicleIdentiActivity"
+            android:screenOrientation="landscape" />
         <activity android:name=".activity.CheckInActivity"
             android:screenOrientation="landscape">
         </activity>

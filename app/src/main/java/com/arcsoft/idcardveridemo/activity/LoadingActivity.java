@@ -14,6 +14,8 @@ public class LoadingActivity extends BaseActivity implements View.OnClickListene
     private Button btnStart;
     private Button btnWelcome;
     private Button btnCheckIn;
+    private Button btnVehicle;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,11 @@ public class LoadingActivity extends BaseActivity implements View.OnClickListene
         btnWelcome.setOnClickListener(this);
         btnStart.setOnClickListener(this);
         btnCheckIn.setOnClickListener(this);
+
+        btnVehicle=findViewById(R.id.btnVehicleidenti);
+
+        btnVehicle.setOnClickListener(this);
+
     }
 
     @Override
@@ -44,6 +51,12 @@ public class LoadingActivity extends BaseActivity implements View.OnClickListene
             case R.id.btnCheckIn:
                 startActivity(CheckInActivity.class);
                 break;
+
+            case R.id.btnVehicleidenti:
+                startActivity(VehicleIdentiActivity.class);
+                break;
+
+
         }
     }
 }
