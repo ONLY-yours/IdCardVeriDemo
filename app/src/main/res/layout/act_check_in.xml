@@ -2,9 +2,9 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activity.CheckInActivity">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:context=".activity.checkIn.CheckInActivity">
 
     <TextView
         android:id="@+id/title1"
@@ -35,9 +35,100 @@
         android:layout_height="74dp"
         android:background="@drawable/ic_back_off"
         android:layout_marginLeft="50dp"
-        android:layout_marginBottom="42dp"
+        android:layout_marginBottom="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         />
+
+    <View
+        android:id="@+id/view_black"
+        android:layout_width="903dp"
+        android:layout_height="273dp"
+        android:background="#4C4C4D"
+        android:layout_marginTop="79dp"
+        app:layout_constraintTop_toBottomOf="@id/title1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        />
+
+
+    <View
+        android:id="@+id/view_cardplace"
+        android:layout_width="237dp"
+        android:layout_height="164dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginLeft="621dp"
+        android:background="@drawable/roundcircle"
+        app:layout_constraintTop_toTopOf="@id/view_black"
+        app:layout_constraintLeft_toLeftOf="@id/view_black"/>
+
+
+    <View
+        android:layout_width="200dp"
+        android:layout_height="5dp"
+        app:layout_constraintLeft_toLeftOf="@id/view_cardplace"
+        app:layout_constraintRight_toRightOf="@id/view_cardplace"
+        app:layout_constraintBottom_toTopOf="@id/view_cardplace"/>
+
+    <View
+        android:id="@+id/line1"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:background="#201F1F"
+        app:layout_constraintLeft_toRightOf="@id/view_black"
+        app:layout_constraintTop_toTopOf="@id/view_black"
+        app:layout_constraintBottom_toBottomOf="@id/view_black"/>
+
+
+    <View
+        android:id="@+id/line2"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="#201F1F"
+        app:layout_constraintTop_toBottomOf="@id/view_black"
+        app:layout_constraintLeft_toLeftOf="@id/view_black"
+        app:layout_constraintRight_toRightOf="@id/view_black"/>
+
+    <View
+        android:layout_width="21dp"
+        android:layout_height="0dp"
+        android:background="#464648"
+        app:layout_constraintLeft_toRightOf="@id/line1"
+        app:layout_constraintTop_toTopOf="@id/line1"
+        app:layout_constraintBottom_toBottomOf="@id/line1"/>
+
+    <View
+        android:id="@+id/shadow1"
+        android:layout_width="0dp"
+        android:layout_height="28dp"
+        android:background="#464648"
+        app:layout_constraintLeft_toLeftOf="@id/line2"
+        app:layout_constraintRight_toRightOf="@id/line2"
+        app:layout_constraintTop_toBottomOf="@id/line2"/>
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="285dp"
+        android:layout_marginLeft="863dp"
+        android:layout_marginTop="135dp"
+        android:src="@mipmap/iv_password"
+        app:layout_constraintTop_toTopOf="@id/view_black"
+        app:layout_constraintLeft_toLeftOf="@id/view_black"/>
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="120dp"
+        android:layout_marginLeft="338dp"
+        android:src="@mipmap/iv_idcardback"
+        app:layout_constraintLeft_toLeftOf="@id/view_black"
+        app:layout_constraintTop_toBottomOf="@id/shadow1"/>
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="120dp"
+        android:layout_marginLeft="625dp"
+        android:src="@mipmap/iv_idcardfront"
+        app:layout_constraintLeft_toLeftOf="@id/view_black"
+        app:layout_constraintTop_toBottomOf="@id/shadow1"/>
+
 
 </android.support.constraint.ConstraintLayout>

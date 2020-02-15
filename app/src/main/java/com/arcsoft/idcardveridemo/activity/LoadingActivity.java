@@ -4,7 +4,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.airbnb.lottie.LottieAnimationView;
+import com.arcsoft.idcardveridemo.activity.checkIn.CheckInActivity;
+import com.arcsoft.idcardveridemo.activity.checkIn.LoadViewActivity;
 import com.arcsoft.idcardveridemo.base.BaseActivity;
 import com.arcsoft.idcardveridemo.MainActivity;
 import com.arcsoft.idcardveridemo.R;
@@ -42,7 +43,7 @@ public class LoadingActivity extends BaseActivity implements View.OnClickListene
                 startActivity(WelcomeActivity.class);
                 break;
             case R.id.btnCheckIn:
-                startActivity(CheckInActivity.class);
+                startActivity(LoadViewActivity.class);
                 break;
         }
     }
