@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    tools:context=".activity.checkIn.FinaCheckActivity">
+
+    <ImageView
+        android:id="@+id/iv_demo"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:background="@drawable/iv_finalcheckback"
+        android:src="#94FFFFFF"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="676dp"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="0dp"
+        android:layout_height="71dp"
+        android:textSize="48sp"
+        android:gravity="center_horizontal|center_vertical"
+        android:textColor="@color/blackPrimary"
+        android:text="8326"
+        android:layout_marginTop="78dp"
+        android:layout_marginLeft="46dp"
+        app:layout_constraintLeft_toLeftOf="@id/iv_demo"
+        app:layout_constraintTop_toTopOf="@id/iv_demo"
+        app:layout_constraintRight_toLeftOf="@id/tv2"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="37dp"
+        android:textSize="25dp"
+        android:text="好莱坞豪华单人床"
+        android:textColor="@color/blackPrimary"
+        android:layout_marginTop="42dp"
+        app:layout_constraintLeft_toLeftOf="@id/tv1"
+        app:layout_constraintRight_toRightOf="@id/iv_demo"
+        app:layout_constraintTop_toBottomOf="@id/tv1"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="37dp"
+        android:text="当前入住0人"
+        android:textSize="18sp"
+        android:textColor="@color/blackPrimary"
+        android:layout_marginTop="96dp"
+        app:layout_constraintLeft_toLeftOf="@id/tv1"
+        app:layout_constraintRight_toRightOf="@id/iv_demo"
+        app:layout_constraintTop_toBottomOf="@id/tv1"/>
+
+    <TextView
+        android:id="@+id/tv2"
+        android:layout_width="0dp"
+        android:layout_height="71dp"
+        android:textSize="28sp"
+        android:gravity="left|center_vertical"
+        android:textColor="@color/blackPrimary"
+        android:text="3楼"
+        android:layout_marginTop="78dp"
+        app:layout_constraintLeft_toRightOf="@id/tv1"
+        app:layout_constraintTop_toTopOf="@id/iv_demo"
+        app:layout_constraintRight_toRightOf="@id/iv_demo"/>
+
+    <LinearLayout
+        android:id="@+id/ll1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="74dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/iv_demo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="108dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="222dp"
+            android:layout_height="89dp"
+            android:minHeight="60sp"
+            android:text="请确认"
+            android:textSize="60sp"
+            android:textColor="@color/blackPrimary"
+            android:layout_marginTop="30dp"
+            android:gravity="center|left"/>
+
+        <TextView
+            android:text="+ 186****5721           修改手机号"
+            android:textSize="28sp"
+            android:textColor="@color/blackPrimary"
+            android:layout_width="390dp"
+            android:layout_marginTop="11dp"
+            android:layout_height="0dp"
+            android:layout_weight="52"
+            android:gravity="center|left"/>
+
+        <TextView
+            android:text="请确保手机号的正确性，入住信息与服务内容将通过短信发送至该号码"
+            android:textSize="16dp"
+            android:layout_marginTop="11dp"
+            android:textColor="@color/blackPrimary"
+            android:layout_width="390dp"
+            android:layout_height="0dp"
+            android:layout_weight="70"
+            android:gravity="center|left"/>
+
+        <TextView
+            android:text="入住时间           02月11日（星期二）14:00"
+            android:textSize="20sp"
+            android:textColor="@color/blackPrimary"
+            android:layout_marginTop="90dp"
+            android:layout_width="380dp"
+            android:layout_height="0dp"
+            android:layout_weight="41"
+            android:gravity="center|left"/>
+
+        <TextView
+            android:text="离店时间           02月12日（星期三）12:00    1 晚"
+            android:textSize="20sp"
+            android:textColor="@color/blackPrimary"
+            android:layout_marginTop="27dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="41"
+            android:gravity="center|left"/>
+
+        <TextView
+            android:text="房间押金           ¥1，500.00"
+            android:textSize="20sp"
+            android:textColor="@color/blackPrimary"
+            android:layout_marginTop="77dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="41"
+            android:gravity="center|left"/>
+
+        <TextView
+            android:text="订单号            1578803151507012337010001"
+            android:textSize="20sp"
+            android:textColor="@color/blackPrimary"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="41"
+            android:gravity="center|left"/>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/btnBack"
+        android:layout_width="74dp"
+        android:layout_height="74dp"
+        android:background="@drawable/ic_back_off"
+        android:layout_marginLeft="25dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+    <View
+        android:layout_width="74dp"
+        android:layout_height="0dp"
+        android:background="@drawable/ic_back_once"
+        android:layout_marginLeft="36dp"
+        app:layout_constraintLeft_toRightOf="@id/btnBack"
+        app:layout_constraintBottom_toBottomOf="@id/btnBack"
+        app:layout_constraintTop_toTopOf="@id/btnBack"
+        />
+
+    <View
+        android:id="@+id/view_callmanager"
+        android:layout_width="300dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/view_finalcheckin"
+        app:layout_constraintLeft_toRightOf="@id/iv_demo"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:textSize="28sp"
+        android:textColor="@color/blackPrimary"
+        android:text="呼叫经理"
+        android:gravity="center"
+        app:layout_constraintLeft_toLeftOf="@id/view_callmanager"
+        app:layout_constraintRight_toRightOf="@id/view_callmanager"
+        app:layout_constraintTop_toTopOf="@id/view_callmanager"
+        app:layout_constraintBottom_toBottomOf="@id/view_callmanager"/>
+
+    <View
+        android:id="@+id/view_finalcheckin"
+        android:layout_width="300dp"
+        android:layout_height="0dp"
+        android:background="#F7730A"
+        app:layout_constraintTop_toBottomOf="@id/view_callmanager"
+        app:layout_constraintLeft_toRightOf="@id/iv_demo"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:textSize="28sp"
+        android:textColor="#FFFFFF"
+        android:text="确认入住"
+        android:gravity="center"
+        app:layout_constraintLeft_toLeftOf="@id/view_finalcheckin"
+        app:layout_constraintRight_toRightOf="@id/view_finalcheckin"
+        app:layout_constraintTop_toTopOf="@id/view_finalcheckin"
+        app:layout_constraintBottom_toBottomOf="@id/view_finalcheckin"/>
+
+</android.support.constraint.ConstraintLayout>

@@ -8,30 +8,24 @@ import android.widget.ImageView;
 import com.arcsoft.idcardveridemo.R;
 import com.arcsoft.idcardveridemo.base.BaseActivity;
 
-public class ConfireOrderActivity extends BaseActivity implements View.OnClickListener {
+public class ArcConfireActivity extends BaseActivity implements View.OnClickListener {
 
-    private ImageView ivTest;
-
-    private View viewNext;
+    private ImageView ivCheckArc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_confire_order);
+        setContentView(R.layout.act_arc_confire);
 
-        ivTest=findViewById(R.id.iv_test);
-        ivTest.setImageBitmap(CheckInActivity.Idimg);
-
-        viewNext=findViewById(R.id.view_next);
-        viewNext.setOnClickListener(this);
-
+        ivCheckArc = findViewById(R.id.iv_checkArc);
+        ivCheckArc.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.view_next:
-                startActivity(ArcConfireActivity.class);
+            case R.id.iv_checkArc:
+                startActivity(FinaCheckActivity.class);
                 break;
         }
     }

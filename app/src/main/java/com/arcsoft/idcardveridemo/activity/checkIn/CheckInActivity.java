@@ -76,7 +76,7 @@ public class CheckInActivity extends BaseActivity implements View.OnClickListene
         if(resultCode==RESULT_OK){
             switch (requestCode){
                 case REQUEST_CODE_SCAN_GALLERY:
-                    Toast.makeText(this,""+data.getDataString(),Toast.LENGTH_LONG).show();
+//                    Toast.makeText(this,""+data.getDataString(),Toast.LENGTH_LONG).show();
                     Bitmap bitmap= null;
                     try {
                         bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(),data.getData());
