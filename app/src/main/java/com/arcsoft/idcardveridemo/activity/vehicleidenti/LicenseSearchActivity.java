@@ -1,4 +1,4 @@
-package com.arcsoft.idcardveridemo.activity;
+package com.arcsoft.idcardveridemo.activity.vehicleidenti;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

@@ -17,8 +17,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activity.checkIn.FinaCheckActivity"
-            android:screenOrientation="landscape"></activity>
+        <activity android:name=".okhttp.OkhttpActivity"
+            android:screenOrientation="landscape" ></activity>
+        <activity android:name=".activity.vehicleidenti.FaceFindingVehicleActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".activity.checkIn.FinaCheckActivity"
+            android:screenOrientation="landscape" />
         <activity
             android:name=".activity.checkIn.ArcConfireActivity"
             android:screenOrientation="landscape" />
@@ -32,10 +37,10 @@
             android:name=".activity.checkIn.LoadViewActivity"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".activity.LicenseSearchActivity"
+            android:name=".activity.vehicleidenti.LicenseSearchActivity"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".activity.VehicleIdentiActivity"
+            android:name=".activity.vehicleidenti.VehicleIdentiActivity"
             android:screenOrientation="landscape" />
         <activity
             android:name=".activity.WelcomeActivity"
@@ -59,6 +64,16 @@
         <meta-data
             android:name="design_height_in_dp"
             android:value="720" />
+
+        <provider
+            android:authorities="com.arcsoft.idcardveridemo.fileprovider"
+            android:name="android.support.v4.content.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"/>
+        </provider>
     </application>
 
 </manifest>

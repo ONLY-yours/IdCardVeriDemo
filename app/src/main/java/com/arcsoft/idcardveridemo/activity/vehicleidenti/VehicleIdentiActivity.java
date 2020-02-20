@@ -1,10 +1,11 @@
-package com.arcsoft.idcardveridemo.activity;
+package com.arcsoft.idcardveridemo.activity.vehicleidenti;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.arcsoft.idcardveridemo.R;
+import com.arcsoft.idcardveridemo.activity.vehicleidenti.LicenseSearchActivity;
 import com.arcsoft.idcardveridemo.base.BaseActivity;
 
 public class VehicleIdentiActivity extends BaseActivity implements View.OnClickListener {
@@ -30,9 +31,11 @@ public class VehicleIdentiActivity extends BaseActivity implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.iv_faceFindVehicle:
-//                startActivity();
+                startActivity(FaceFindingVehicleActivity.class);
+                break;
             case R.id.iv_licenseFindVehicle:
                 startActivity(LicenseSearchActivity.class);
+                break;
         }
 
     }
