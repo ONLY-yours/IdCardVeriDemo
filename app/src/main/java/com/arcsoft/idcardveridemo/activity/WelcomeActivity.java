@@ -233,6 +233,7 @@ public class WelcomeActivity extends BaseActivity implements SurfaceHolder.Callb
                     if(isInit) {
                         DetectFaceResult result = IdCardVerifyManager.getInstance().onPreviewData(data, mWidth, mHeight, true);
                         if (result.getErrCode() != IdCardVerifyError.OK) {
+
                             Log.i(TAG, "onPreviewData video result: " + result.getErrCode());
                         }else{
                             //异步处理脸部
@@ -241,6 +242,7 @@ public class WelcomeActivity extends BaseActivity implements SurfaceHolder.Callb
                             Canvas canvas = surfaceRect.getHolder().lockCanvas();
                             canvas.drawColor(0, PorterDuff.Mode.CLEAR);
                             Rect rect = result.getFaceRect();
+
                             if (rect != null) {
                                 Rect adjustedRect = DrawUtils.adjustRect(rect, mWidth, mHeight,
                                         canvas.getWidth(), canvas.getHeight(), displayOrientation, camereId);
@@ -272,6 +274,7 @@ public class WelcomeActivity extends BaseActivity implements SurfaceHolder.Callb
 //                + ", costTime " + (System.currentTimeMillis() - startTime) + ", isSuccess "
 //                + compareResult.isSuccess() + ", errCode " + compareResult.getErrCode(), Toast.LENGTH_LONG).show();
         if( isIdCardReady==true && isCurrentReady==true && compareResult.isSuccess()==true ){
+
             showToast("欢迎您,尊敬的xxx先生");
         }
         isIdCardReady = false;
@@ -306,7 +309,10 @@ public class WelcomeActivity extends BaseActivity implements SurfaceHolder.Callb
 
     @Override
     public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
-
+        camera.setPreviewCallback(null);
+        camera.stopPreview();
+        camera.release();
+        camera = null;
     }
 
     private Camera.Size getBestSupportedSize(List<Camera.Size> sizes, DisplayMetrics metrics) {

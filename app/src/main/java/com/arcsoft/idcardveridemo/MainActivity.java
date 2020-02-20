@@ -239,7 +239,7 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
     }
 
     @Override
-    public void surfaceCreated(SurfaceHolder holder) {
+    public void surfaceCreated(final SurfaceHolder holder) {
         camereId = Camera.getNumberOfCameras() - 1;
         camera = Camera.open(camereId);
         try {

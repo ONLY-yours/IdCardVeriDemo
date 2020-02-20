@@ -5,12 +5,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.arcsoft.idcardveridemo.MainActivity;
 import com.arcsoft.idcardveridemo.R;
+import com.arcsoft.idcardveridemo.activity.WelcomeActivity;
 import com.arcsoft.idcardveridemo.base.BaseActivity;
 
 public class ConfireOrderActivity extends BaseActivity implements View.OnClickListener {
 
     private ImageView ivTest;
+
+    private View viewBack;
 
     private View viewNext;
 
@@ -25,6 +29,9 @@ public class ConfireOrderActivity extends BaseActivity implements View.OnClickLi
         viewNext=findViewById(R.id.view_next);
         viewNext.setOnClickListener(this);
 
+        viewBack=findViewById(R.id.btnBack);
+        viewBack.setOnClickListener(this);
+
     }
 
     @Override
@@ -32,6 +39,10 @@ public class ConfireOrderActivity extends BaseActivity implements View.OnClickLi
         switch (v.getId()){
             case R.id.view_next:
                 startActivity(ArcConfireActivity.class);
+//                startActivity(WelcomeActivity.class);
+                break;
+            case R.id.btnBack:
+                onBackPressed();
                 break;
         }
     }
