@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="provarray">
+        <item>京</item>
+        <item>浙</item>
+        <item>沪</item>
+        <item>津</item>
+
+    </string-array>
+</resources>
