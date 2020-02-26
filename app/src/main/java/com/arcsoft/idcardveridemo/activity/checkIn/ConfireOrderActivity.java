@@ -38,8 +38,8 @@ public class ConfireOrderActivity extends BaseActivity implements View.OnClickLi
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.view_next:
-                startActivity(ArcConfireActivity.class);
-//                startActivity(WelcomeActivity.class);
+//                startActivity(ArcConfireActivity.class);
+                startActivity(WelcomeActivity.class);
                 break;
             case R.id.btnBack:
                 onBackPressed();

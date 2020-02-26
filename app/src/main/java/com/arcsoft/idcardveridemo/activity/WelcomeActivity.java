@@ -3,6 +3,7 @@ package com.arcsoft.idcardveridemo.activity;
 import android.Manifest;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
@@ -12,6 +13,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.hardware.Camera;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -32,14 +34,23 @@ import com.arcsoft.idcardveri.IdCardVerifyManager;
 import com.arcsoft.idcardveridemo.DrawUtils;
 import com.arcsoft.idcardveridemo.ImageChange.ChangeNv21;
 import com.arcsoft.idcardveridemo.MainActivity;
+import com.arcsoft.idcardveridemo.activity.checkIn.FinaCheckActivity;
 import com.arcsoft.idcardveridemo.base.BaseActivity;
 import com.arcsoft.idcardveridemo.R;
 import com.arcsoft.idcardveridemo.constants.Constants;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import static com.arcsoft.idcardveridemo.activity.checkIn.CheckInActivity.Idimg;
+
+import okio.Okio;
+import com.arcsoft.util.*;
 
 
 public class WelcomeActivity extends BaseActivity implements SurfaceHolder.Callback{
@@ -62,6 +73,11 @@ public class WelcomeActivity extends BaseActivity implements SurfaceHolder.Callb
     //打开相册的标记
     private static final int REQUEST_CODE_SCAN_GALLERY = 1 ;
     private Bitmap IDimg=null;
+
+    public static Bitmap preIMG=null; //用于存放拍照的照片
+
+    private static Handler mHandler = new Handler();
+    private int trytimes=0;     //用于放置人脸识别的次数（超过10次判定识别失败）
 
     private ExecutorService activeService = Executors.newSingleThreadExecutor();
 
@@ -98,6 +114,7 @@ public class WelcomeActivity extends BaseActivity implements SurfaceHolder.Callb
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        preIMG=null;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_welcome);
         //授权
@@ -178,7 +195,8 @@ public class WelcomeActivity extends BaseActivity implements SurfaceHolder.Callb
         surfaceRect.setZOrderMediaOverlay(true);
         surfaceRect.getHolder().setFormat(PixelFormat.TRANSLUCENT);
         btnUse=findViewById(R.id.btn_idcard);
-        btnSelectPhoto=findViewById(R.id.btn_photoselect);
+
+        doClick();
     }
 
 
@@ -204,6 +222,12 @@ public class WelcomeActivity extends BaseActivity implements SurfaceHolder.Callb
             nv21Data = ChangeNv21.bitmapToNv21(IDimg,width,height);
         }
 
+        if(Idimg!=null){
+            width=(Idimg.getWidth()-Idimg.getWidth()%4);
+            height=(Idimg.getHeight()-Idimg.getHeight()%2);
+            nv21Data = ChangeNv21.bitmapToNv21(Idimg,width,height);
+        }
+
         if(isInit) {
             DetectFaceResult result = IdCardVerifyManager.getInstance().inputIdCardData(nv21Data, width, height);
             Log.i(TAG, "inputIdCardData result: " + result.getErrCode());
@@ -218,7 +242,7 @@ public class WelcomeActivity extends BaseActivity implements SurfaceHolder.Callb
             DisplayMetrics metrics = new DisplayMetrics();
             getWindowManager().getDefaultDisplay().getMetrics(metrics);
             Camera.Parameters parameters = camera.getParameters();
-            Camera.Size previewSize = getBestSupportedSize(parameters.getSupportedPreviewSizes(), metrics);
+            final Camera.Size previewSize = getBestSupportedSize(parameters.getSupportedPreviewSizes(), metrics);
             parameters.setPreviewSize(previewSize.width, previewSize.height);
             camera.setParameters(parameters);
             final int mWidth = previewSize.width;
@@ -237,6 +261,11 @@ public class WelcomeActivity extends BaseActivity implements SurfaceHolder.Callb
                             Log.i(TAG, "onPreviewData video result: " + result.getErrCode());
                         }else{
                             //异步处理脸部
+
+                            if(preIMG==null){
+                                preIMG = ChangeNv21.nv21ToBitmap(data,mWidth,mHeight);
+                            }
+
                         }
                         if (surfaceRect != null) {
                             Canvas canvas = surfaceRect.getHolder().lockCanvas();
@@ -275,14 +304,14 @@ public class WelcomeActivity extends BaseActivity implements SurfaceHolder.Callb
 //                + compareResult.isSuccess() + ", errCode " + compareResult.getErrCode(), Toast.LENGTH_LONG).show();
         if( isIdCardReady==true && isCurrentReady==true && compareResult.isSuccess()==true ){
 
+
             showToast("欢迎您,尊敬的xxx先生");
+            finish();
+            startActivity(FinaCheckActivity.class);
         }
         isIdCardReady = false;
         isCurrentReady = false;
     }
-
-
-
 
 
     @Override
@@ -361,13 +390,13 @@ public class WelcomeActivity extends BaseActivity implements SurfaceHolder.Callb
         return result;
     }
 
-    //打开相册选择
-    private void openAlbum() {
-        Intent intent = new Intent();
-        intent.setAction(Intent.ACTION_PICK);
-        intent.setType("image/*");
-        startActivityForResult(intent,REQUEST_CODE_SCAN_GALLERY);//打开系统相册
+
+    @Override
+    public void onBackPressed() {
+        finish();
+//        startActivity(ConfireOrderActivity.class);
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -389,6 +418,27 @@ public class WelcomeActivity extends BaseActivity implements SurfaceHolder.Callb
 
         super.onActivityResult(requestCode, resultCode, data);
     }
+
+    public void doClick(){
+        Runnable r = new Runnable() {
+            @Override
+            public void run() {
+                //do something
+                //每隔1s循环执行run方法
+                inputIdCard();
+                mHandler.postDelayed(this, 1000);
+                trytimes++;
+                if(trytimes==10){
+                    showToast("人脸识别失败，请重新识别");
+                    onBackPressed();
+                }
+            }
+        };
+        mHandler.postDelayed(r, 1000);
+    };
+
+
+
 
 
 }

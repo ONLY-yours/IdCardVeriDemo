@@ -1,6 +1,13 @@
 package com.arcsoft.idcardveridemo.ImageChange;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.ImageFormat;
+import android.graphics.Rect;
+import android.graphics.YuvImage;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 
 /**
  * @auther: lijunjie
@@ -57,6 +64,29 @@ public class ChangeNv21 {
             }
         }
         return nv21;
+    }
+
+
+    /**
+     *  nv21格式转化为bitmap
+     *
+     * @param nv21 argb数据
+     * @param width  宽度
+     * @param height 高度
+     * @return nv21数据
+     */
+    public static Bitmap nv21ToBitmap(byte[] nv21, int width, int height) {
+        Bitmap bitmap = null;
+        try {
+            YuvImage image = new YuvImage(nv21, ImageFormat.NV21, width, height, null);
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            image.compressToJpeg(new Rect(0, 0, width, height), 80, stream);
+            bitmap = BitmapFactory.decodeByteArray(stream.toByteArray(), 0, stream.size());
+            stream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return bitmap;
     }
 
 }
