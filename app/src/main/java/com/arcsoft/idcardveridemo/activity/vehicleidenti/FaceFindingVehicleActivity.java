@@ -33,23 +33,23 @@ public class FaceFindingVehicleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_face_finding_vehicle);
         initView();
-        //创建File对象，用于存储拍摄后的图片
-        File outputImage = new File(getExternalCacheDir(),"output_image.jpg");
-        try {
-            if(outputImage.exists()){
-                outputImage.delete();
-            }
-            outputImage.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        //得到Uri
-        if(Build.VERSION.SDK_INT >= 24){
-            imageUri = FileProvider.getUriForFile(FaceFindingVehicleActivity.this,
-                    "com.arcsoft.idcardveridemo.fileprovider",outputImage);
-        }else {
-            imageUri = Uri.fromFile(outputImage);
-        }
+//        //创建File对象，用于存储拍摄后的图片
+//        File outputImage = new File(getExternalCacheDir(),"output_image.jpg");
+//        try {
+//            if(outputImage.exists()){
+//                outputImage.delete();
+//            }
+//            outputImage.createNewFile();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        //得到Uri
+//        if(Build.VERSION.SDK_INT >= 24){
+//            imageUri = FileProvider.getUriForFile(FaceFindingVehicleActivity.this,
+//                    "com.arcsoft.idcardveridemo.fileprovider",outputImage);
+//        }else {
+//            imageUri = Uri.fromFile(outputImage);
+//        }
 //        //启动相机程序
 //        Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
 //        intent.putExtra(MediaStore.EXTRA_OUTPUT,imageUri);
