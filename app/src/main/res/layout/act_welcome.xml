@@ -38,36 +38,32 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 
-    <ImageView
-        android:id="@+id/iv_checkArc"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/roundcircle"
-        android:layout_marginTop="208dp"
-        android:layout_marginLeft="416dp"
-        android:layout_marginRight="416dp"
-        android:layout_marginBottom="53dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+
+<FrameLayout
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent">
 
     <SurfaceView
         android:id="@+id/surfaceView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toTopOf="@id/iv_checkArc"
-        app:layout_constraintLeft_toLeftOf="@id/iv_checkArc"
-        app:layout_constraintRight_toRightOf="@id/iv_checkArc"
-        app:layout_constraintBottom_toBottomOf="@id/iv_checkArc"/>
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="208dp"
+        android:layout_marginLeft="416dp"
+        android:layout_marginRight="416dp"
+        android:layout_marginBottom="53dp"/>
 
     <SurfaceView
         android:id="@+id/surfaceview_rect"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toTopOf="@id/iv_checkArc"
-        app:layout_constraintLeft_toLeftOf="@id/iv_checkArc"
-        app:layout_constraintRight_toRightOf="@id/iv_checkArc"
-        app:layout_constraintBottom_toBottomOf="@id/iv_checkArc"/>
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="208dp"
+        android:layout_marginLeft="416dp"
+        android:layout_marginRight="416dp"
+        android:layout_marginBottom="53dp"/>
+</FrameLayout>
 
 </android.support.constraint.ConstraintLayout>

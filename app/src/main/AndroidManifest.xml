@@ -17,9 +17,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".okhttp.OkhttpActivity"
-            android:screenOrientation="landscape" ></activity>
-        <activity android:name=".activity.vehicleidenti.FaceFindingVehicleActivity"
+        <activity android:name=".upload.UpLoadActivity"
+            android:screenOrientation="landscape"></activity>
+        <activity
+            android:name=".okhttp.OkhttpActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".activity.vehicleidenti.FaceFindingVehicleActivity"
             android:screenOrientation="landscape" />
         <activity
             android:name=".activity.checkIn.FinaCheckActivity"
@@ -32,8 +36,8 @@
             android:screenOrientation="landscape" />
         <activity
             android:name=".activity.checkIn.ConfireOrderActivity"
-            android:screenOrientation="landscape"
-            android:launchMode="singleTop"/>
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape" />
         <activity
             android:name=".activity.checkIn.LoadViewActivity"
             android:screenOrientation="landscape" />
@@ -67,13 +71,13 @@
             android:value="720" />
 
         <provider
-            android:authorities="com.arcsoft.idcardveridemo.fileprovider"
             android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.arcsoft.idcardveridemo.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"/>
+                android:resource="@xml/file_paths" />
         </provider>
     </application>
 

@@ -64,6 +64,8 @@ public class WelcomeActivity extends BaseActivity implements SurfaceHolder.Callb
     private Camera camera;
     private long startTime = 0;
 
+    private int dpSuccessed=0;      //用于判断识别是否成功，如果成功防止多次启动后面的订单
+
     private boolean isInit = false; //用于判断引擎是否激活
     //视频或图片人脸数据是否检测到
     private boolean isCurrentReady = false;
@@ -196,7 +198,9 @@ public class WelcomeActivity extends BaseActivity implements SurfaceHolder.Callb
         surfaceRect.getHolder().setFormat(PixelFormat.TRANSLUCENT);
         btnUse=findViewById(R.id.btn_idcard);
 
+        dpSuccessed=0;
         doClick();
+
     }
 
 
@@ -257,11 +261,9 @@ public class WelcomeActivity extends BaseActivity implements SurfaceHolder.Callb
                     if(isInit) {
                         DetectFaceResult result = IdCardVerifyManager.getInstance().onPreviewData(data, mWidth, mHeight, true);
                         if (result.getErrCode() != IdCardVerifyError.OK) {
-
                             Log.i(TAG, "onPreviewData video result: " + result.getErrCode());
                         }else{
                             //异步处理脸部
-
                             if(preIMG==null){
                                 preIMG = ChangeNv21.nv21ToBitmap(data,mWidth,mHeight);
                             }
@@ -304,10 +306,12 @@ public class WelcomeActivity extends BaseActivity implements SurfaceHolder.Callb
 //                + compareResult.isSuccess() + ", errCode " + compareResult.getErrCode(), Toast.LENGTH_LONG).show();
         if( isIdCardReady==true && isCurrentReady==true && compareResult.isSuccess()==true ){
 
-
-            showToast("欢迎您,尊敬的xxx先生");
-            finish();
-            startActivity(FinaCheckActivity.class);
+            if(dpSuccessed==0) {
+                dpSuccessed=1;
+                showToast("欢迎您,尊敬的xxx先生");
+                finish();
+                startActivity(FinaCheckActivity.class);
+            }
         }
         isIdCardReady = false;
         isCurrentReady = false;
@@ -394,6 +398,9 @@ public class WelcomeActivity extends BaseActivity implements SurfaceHolder.Callb
     @Override
     public void onBackPressed() {
         finish();
+        if (dpSuccessed!=1){
+            showToast("人脸识别失败，请重新识别");
+        }
 //        startActivity(ConfireOrderActivity.class);
     }
 
@@ -429,12 +436,15 @@ public class WelcomeActivity extends BaseActivity implements SurfaceHolder.Callb
                 mHandler.postDelayed(this, 1000);
                 trytimes++;
                 if(trytimes==10){
-                    showToast("人脸识别失败，请重新识别");
+                    onBackPressed();
+                }else if(trytimes==-1){
                     onBackPressed();
                 }
             }
         };
         mHandler.postDelayed(r, 1000);
+
+
     };
 
 

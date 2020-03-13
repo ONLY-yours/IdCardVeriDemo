@@ -9,6 +9,7 @@ import com.arcsoft.idcardveridemo.activity.vehicleidenti.VehicleIdentiActivity;
 import com.arcsoft.idcardveridemo.base.BaseActivity;
 import com.arcsoft.idcardveridemo.MainActivity;
 import com.arcsoft.idcardveridemo.R;
+import com.arcsoft.idcardveridemo.upload.UpLoadActivity;
 
 public class LoadingActivity extends BaseActivity implements View.OnClickListener {
 
@@ -16,6 +17,7 @@ public class LoadingActivity extends BaseActivity implements View.OnClickListene
     private Button btnWelcome;
     private Button btnCheckIn;
     private Button btnVehicle;
+    private Button btnUpload;
 
 
     @Override
@@ -30,9 +32,12 @@ public class LoadingActivity extends BaseActivity implements View.OnClickListene
         btnWelcome=findViewById(R.id.btnWelcome);
         btnStart=findViewById(R.id.btnStart);
         btnCheckIn=findViewById(R.id.btnCheckIn);
+        btnUpload=findViewById(R.id.btnload);
+
         btnWelcome.setOnClickListener(this);
         btnStart.setOnClickListener(this);
         btnCheckIn.setOnClickListener(this);
+        btnUpload.setOnClickListener(this);
 
         btnVehicle=findViewById(R.id.btnVehicleidenti);
 
@@ -57,6 +62,9 @@ public class LoadingActivity extends BaseActivity implements View.OnClickListene
                 startActivity(VehicleIdentiActivity.class);
                 break;
 
+            case R.id.btnload:
+                startActivity(UpLoadActivity.class);
+                break;
 
         }
     }
