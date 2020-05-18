@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.arcsoft.idcardveridemo.R;
+import com.arcsoft.idcardveridemo.adapter.OrderListAdapter;
 import com.arcsoft.idcardveridemo.base.BaseActivity;
 
 import java.io.IOException;
@@ -89,7 +90,8 @@ public class CheckInActivity extends BaseActivity implements View.OnClickListene
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
-        startActivity(ConfireOrderActivity.class);
+//        startActivity(ConfireOrderActivity.class);
+            startActivity(OrderListAdapter.class);
     }
 
 }

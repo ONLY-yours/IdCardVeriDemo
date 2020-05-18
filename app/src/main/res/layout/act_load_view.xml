@@ -6,6 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".activity.checkIn.LoadViewActivity">
 
+
+
+
     <ImageView
         android:id="@+id/iv_next"
         android:layout_width="0dp"
@@ -37,6 +40,18 @@
         app:layout_constraintRight_toRightOf="@id/view_next"
         app:layout_constraintTop_toTopOf="@id/view_next"
         app:layout_constraintBottom_toBottomOf="@id/view_next"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="48sp"
+        android:textColor="#ffffff"
+        android:text="无与伦比大酒店\n自助入住系统"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
 
 
 </android.support.constraint.ConstraintLayout>

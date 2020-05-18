@@ -17,8 +17,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".upload.UpLoadActivity"
-            android:screenOrientation="landscape"></activity>
+        <activity android:name=".activity.checkIn.OrderListActivity"></activity>
+        <activity
+            android:name=".upload.UpLoadActivity"
+            android:screenOrientation="landscape" />
         <activity
             android:name=".okhttp.OkhttpActivity"
             android:screenOrientation="landscape" />

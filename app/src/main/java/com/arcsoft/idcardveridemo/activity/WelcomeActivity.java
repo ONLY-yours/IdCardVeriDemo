@@ -435,10 +435,17 @@ public class WelcomeActivity extends BaseActivity implements SurfaceHolder.Callb
                 inputIdCard();
                 mHandler.postDelayed(this, 1000);
                 trytimes++;
-                if(trytimes==10){
-                    onBackPressed();
-                }else if(trytimes==-1){
-                    onBackPressed();
+                if (trytimes==3){
+                    startActivity(FinaCheckActivity.class);
+                }else{
+
+                    if(trytimes==10){
+                        onBackPressed();
+                    }else if(trytimes==-1){
+                        onBackPressed();
+                    }
+                    
+
                 }
             }
         };
