@@ -13,20 +13,24 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.arcsoft.idcardveridemo.MainActivity;
 import com.arcsoft.idcardveridemo.R;
 import com.arcsoft.idcardveridemo.activity.checkIn.ConfireOrderActivity;
+import com.arcsoft.idcardveridemo.base.BaseActivity;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class FaceFindingVehicleActivity extends AppCompatActivity {
+public class FaceFindingVehicleActivity extends BaseActivity {
 
     public static final int TAKE_PHOTO = 1;
     private ImageView pic;
     private Uri imageUri;
+
+    private View viewNext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +66,17 @@ public class FaceFindingVehicleActivity extends AppCompatActivity {
     }
     void initView(){
         pic = findViewById(R.id.iv_face_finding_vehicle);
+
+        viewNext=findViewById(R.id.view_next);
+        viewNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(ThePositionActivity.class);
+                showToast("查找成功！");
+            }
+        });
+
+
     }
 
     @Override

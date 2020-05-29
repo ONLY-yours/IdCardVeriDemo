@@ -56,13 +56,30 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+        if (i==0){
+            viewHolder.tv_name.setText("豪华套房");
+            viewHolder.tv_money.setText("金额：420");
+            viewHolder.tv_time.setText("2019-12-20 —— \n 2019-12-24");
+        }else  if (i==1){
+            viewHolder.tv_name.setText("双人房");
+            viewHolder.tv_money.setText("金额：220");
+            viewHolder.tv_time.setText("2019-12-24 —— \n 2019-12-26");
+        }else  if (i==2){
+            viewHolder.tv_name.setText("特价大床房");
+            viewHolder.tv_money.setText("金额：1,500");
+            viewHolder.tv_time.setText("2019-12-31 —— \n 2020-1-1");
+        }else  if (i==3){
+            viewHolder.tv_name.setText("豪华单间");
+            viewHolder.tv_money.setText("金额：320");
+            viewHolder.tv_time.setText("2020-4-1 —— \n 2020-4-2");
+        }
 
     }
 
 
     @Override
     public int getItemCount() {
-        return 10;
+        return 3;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{

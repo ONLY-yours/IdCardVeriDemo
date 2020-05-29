@@ -15,6 +15,8 @@ public class FinaCheckActivity extends BaseActivity implements View.OnClickListe
     private View viewBack;
 
     private ImageView ivdemo;
+
+    private View btnCheckIn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +27,9 @@ public class FinaCheckActivity extends BaseActivity implements View.OnClickListe
 
         viewBack=findViewById(R.id.btnBack);
         viewBack.setOnClickListener(this);
+
+        btnCheckIn=findViewById(R.id.view_finalcheckin);
+        btnCheckIn.setOnClickListener(this);
     }
 
     @Override
@@ -32,6 +37,10 @@ public class FinaCheckActivity extends BaseActivity implements View.OnClickListe
         switch (v.getId()){
             case R.id.btnBack:
                 onBackPressed();
+                break;
+            case R.id.view_finalcheckin:
+                showToast("入住成功，请享受愉快的入住体验！");
+                startActivity(LoadViewActivity.class);
                 break;
         }
     }

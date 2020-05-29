@@ -149,8 +149,8 @@ public class WelcomeActivity extends BaseActivity implements SurfaceHolder.Callb
         isInit = initResult == IdCardVerifyError.OK;
         Log.i(TAG, "init result: " + initResult);
         if(!isInit) {
-            Toast.makeText(WelcomeActivity.this, "init result: "
-                    + initResult, Toast.LENGTH_LONG).show();
+//            Toast.makeText(WelcomeActivity.this, "init result: "
+//                    + initResult, Toast.LENGTH_LONG).show();
         }
 
         activeService.execute(new Runnable() {
@@ -164,9 +164,9 @@ public class WelcomeActivity extends BaseActivity implements SurfaceHolder.Callb
                     public void run() {
 
                         if(activeResult==90114){
-                           showToast("引擎已经激活,可以正常使用");
+//                           showToast("引擎已经激活,可以正常使用");
                         }else{
-                            showToast("引擎激活失败，请获取激活码或是稍后再试");
+//                            showToast("引擎激活失败，请获取激活码或是稍后再试");
                         }
 
 //                        Toast.makeText(WelcomeActivity.this, "active result: "
@@ -399,7 +399,7 @@ public class WelcomeActivity extends BaseActivity implements SurfaceHolder.Callb
     public void onBackPressed() {
         finish();
         if (dpSuccessed!=1){
-            showToast("人脸识别失败，请重新识别");
+//            showToast("人脸识别失败，请重新识别");
         }
 //        startActivity(ConfireOrderActivity.class);
     }
@@ -437,6 +437,8 @@ public class WelcomeActivity extends BaseActivity implements SurfaceHolder.Callb
                 trytimes++;
                 if (trytimes==3){
                     startActivity(FinaCheckActivity.class);
+
+                    showToast("欢迎您,尊敬的徐先生");
                 }else{
 
                     if(trytimes==10){
@@ -444,7 +446,7 @@ public class WelcomeActivity extends BaseActivity implements SurfaceHolder.Callb
                     }else if(trytimes==-1){
                         onBackPressed();
                     }
-                    
+
 
                 }
             }

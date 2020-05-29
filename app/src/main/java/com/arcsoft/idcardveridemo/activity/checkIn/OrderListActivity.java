@@ -25,6 +25,8 @@ public class OrderListActivity extends BaseActivity {
 
 
     void initview(){
+
+
         rvOrderList=findViewById(R.id.rv1);
         LinearLayoutManager manager=new LinearLayoutManager(this);
         manager.setOrientation(LinearLayoutManager.HORIZONTAL);

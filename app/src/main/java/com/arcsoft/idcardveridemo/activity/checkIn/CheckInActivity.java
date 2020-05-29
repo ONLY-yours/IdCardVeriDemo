@@ -91,7 +91,7 @@ public class CheckInActivity extends BaseActivity implements View.OnClickListene
         }
         super.onActivityResult(requestCode, resultCode, data);
 //        startActivity(ConfireOrderActivity.class);
-            startActivity(OrderListAdapter.class);
+            startActivity(OrderListActivity.class);
     }
 
 }
